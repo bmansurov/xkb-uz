@@ -1,0 +1,39 @@
+* Uzbek Cyrillic layout for xkb
+  layout for easily typing both Cyrillic and Latin characters and symbols
+
+** How to
+   1. Clone the repository and overwrite the existing layout file. It's
+      the easiest method. You'll have to repeat the process every time
+      xkb symbols are updated:
+
+      #+BEGIN_SRC shell
+      git clone git@github.com:bmansurov/xkb-uz.git
+      sudo cp xkb-uz/uz /usr/share/X11/xkb/symbols/
+      #+END_SRC
+
+   2. Create a file called ~/etc/X11/xorg.conf.d/90-custom-kbd.conf~ with
+      the following contents
+
+      #+BEGIN_SRC conf
+      Section "InputClass"
+          # All options are here: man -P cat xkeyboard-config
+          # Right alt is never a level 3 chooser.
+          # Both shifts enable caps lock.
+          # Caps lock is level 3 chooser.
+          Option "XKbOptions" "shift:both_capslock,lv3:caps_switch"
+      EndSection
+      #+END_SRC
+
+   3. Restart the X-Server.
+
+   4. Now you can easily type the symbols available in the ~us~ keyboard
+      with the level3 chooser like so:
+      - CapsLock ғ :: -
+      - CapsLock Ғ :: _
+      - CapsLock Shift э :: "
+      - etc.
+
+   5. You can also type truly Cyrillic symbols like guillemets (angle
+      quotes, «»):
+      - Shift 2 :: «
+      - CapsLock 2 :: »
